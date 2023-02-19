@@ -1,13 +1,61 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import-normalize;
+
+:root {
+  background: #2c2c2c;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.Main-UI {
+  background: linear-gradient(60deg, #f07474,#ffae45);
+  width: 300px;
+  height: 475px;
+  border-radius: 8px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  justify-content: center;
+}
+
+.Navbar {
+  background: #222222;
+  width: 100px;
+  height: 40px;
+  border-radius: 0px 0px 7px 7px;
+
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.svg {
+  display: block;
+  margin: auto;
+}
+
+.Navbar-Item {
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.Nav-Anim {
+  position: absolute;
+  z-index: 0;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+}
+
+.Nav-Content {
+  z-index: 1;
 }
