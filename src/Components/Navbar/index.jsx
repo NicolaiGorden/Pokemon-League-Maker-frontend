@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 function Navbar() {
 
-    //directional hover effects for both items, should be placed on navbar anim, and also remove grayscale on hover
-
     const [ball, setBall] = useState("")
     const [vs, setVs] = useState("")
+
+    const [ballHover, setBallHover] = useState(false)
+    const [vsHover, setVsHover] = useState(false)
 
     useEffect(() => {
         fetch('https://pokeapi.co/api/v2/item/poke-ball')
@@ -26,12 +28,34 @@ function Navbar() {
     return (
         <nav class="Navbar">
             <a class="Navbar-Item">
-                <img class="Nav-Content" style= {{  filter: 'grayscale(100%)' }} src={ball}/>
-                <div class="Nav-Anim" style= {{  background: "linear-gradient(20deg, #bbbbbb,#797979)"}}></div>
+                <motion.div 
+                    class="Nav-Anim" 
+                    style= {{  background: "linear-gradient(20deg, #bbbbbb,#797979)"}}
+                    whileHover={{ scale: 1.1 }}
+                    onHoverStart={e => {setBallHover(true)}}
+                    onHoverEnd={e => {setBallHover(false)}}
+                >
+                </motion.div>
+                <img 
+                    class="Nav-Content" 
+                    style= {  ballHover ? {filter: 'grayscale(0%)', scale: 2 } : {filter: 'grayscale(100%)'} } 
+                    src={ball}
+                />
             </a>
             <a class="Navbar-Item">
-                <img class="Nav-Content" style= {{  filter: 'grayscale(100%)' }} src={vs}/>
-                <div class="Nav-Anim" style= {{  background: "linear-gradient(20deg, #bbbbbb,#797979)"}}></div>
+            <motion.div 
+                    class="Nav-Anim" 
+                    style= {{  background: "linear-gradient(20deg, #bbbbbb,#797979)"}}
+                    whileHover={{ scale: 1.1 }}
+                    onHoverStart={e => {setVsHover(true)}}
+                    onHoverEnd={e => {setVsHover(false)}}
+                >
+                </motion.div>
+                <img 
+                    class="Nav-Content" 
+                    style= {  vsHover ? {filter: 'grayscale(0%)', scale: 2 } : {filter: 'grayscale(100%)'} } 
+                    src={vs}
+                />
             </a>
         </nav>
     );
