@@ -26,14 +26,124 @@
 
 .PM-Content {
   width: 290px;
-  height: 410px;
+  height: 390px;
   margin-top: 5px;
-  background-color: #222222;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.PM-img-Container {
+  width: 125px;
+  height: 125px;
+  background: rgb(207, 207, 207);
+  margin-left: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+  outline: 2px solid #222222;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.Pokeform {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+  height: 125px
+}
+
+.Abiform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 210px;
+  margin-left: 10px;
+  margin: auto;
+}
+
+.Label {
+  font-family: 'Hind Madurai', sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  height: 1px;
+  margin-top: 9px;
+  margin-right: 80px;
+}
+
+.Ability-Label {
+  font-family: 'Hind Madurai', sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.Nickname-Input {
+  width: 151px;
+  height: 40px;
+  margin-top: 20px;
+  background: #222222;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  font-family: 'Hind Madurai', sans-serif;
+  color:antiquewhite;
+  font-size: 25px;
+  font-weight: bolder;
+  text-align: center;
+  border-radius: 0px 7px 7px 0px;
+}
+
+.Species-Select {
+  width: 125px;
+  height: 20px;
+  margin-top: 20px;
+  background: #222222;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  font-family: 'Hind Madurai', sans-serif;
+  color:antiquewhite;
+  font-size: 15px;
+  font-weight: bolder;
+  text-align: center;
+  border-radius: 0px 7px 7px 0px;
+}
+
+.Ability-Select {
+  width: 125px;
+  height: 20px;
+  background: #222222;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  font-family: 'Hind Madurai', sans-serif;
+  color:antiquewhite;
+  font-size: 15px;
+  font-weight: bolder;
+  text-align: center;
+  border-radius: 7px
+}
+
+.Moves {
+  width: 300px;
+  height: 150px;
+  background-color:#222222
+}
+
+.Save {
+  width: 300px;
+  height: 50px;
+  background-color:#222222
 }
 
 .LM-Content {
   width: 290px;
-  height: 410px;
+  height: 390px;
   margin-top: 5px;
   background-color: #222222;
 }
@@ -120,7 +230,7 @@
 }
 
 .Box-Footer {
-  background: #d2ca92;
+  background: antiquewhite;
   width:300px;
   min-height:30px;
   z-index: 2;
