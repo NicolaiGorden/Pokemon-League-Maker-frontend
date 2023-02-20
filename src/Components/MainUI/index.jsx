@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import LeagueMaker from '../LeagueMaker';
 import Navbar from '../Navbar/index';
+import PokemonMaker from '../PokemonMaker';
 
 function MainUI( { leagueState, leagueSwitch }) {
     return (
@@ -10,6 +12,7 @@ function MainUI( { leagueState, leagueSwitch }) {
                 leagueState= {leagueState}
                 leagueSwitch= {leagueSwitch}
             />
+            {leagueState ? <LeagueMaker/> : <PokemonMaker/>}
         </div>
     );
 }

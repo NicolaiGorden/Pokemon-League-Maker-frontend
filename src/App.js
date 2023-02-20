@@ -3,6 +3,8 @@ import './App.css';
 import MainUI from './Components/MainUI';
 import React, { useState, useEffect } from 'react';
 import NavbarWidget from './Components/NavbarWidget';
+import Box from './Components/Box';
+import BoxFooter from './Components/BoxFooter';
 
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
         leagueState= { leagueModeOn }
         leagueSwitch= { setLeagueModeOn }
       />
+      <Box/>
+      <BoxFooter/>
     </div>
   );
 }
