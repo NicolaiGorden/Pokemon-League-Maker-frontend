@@ -7,12 +7,12 @@
 .App {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   height: 80vh;
 }
 
 .Main-UI {
-  -webkit-transition: all 20s ease;
   width: 300px;
   height: 475px;
   border-radius: 8px;
@@ -20,6 +20,16 @@
 
   display: flex;
   justify-content: center;
+}
+
+.Pokemon-Maker {
+  background: linear-gradient(60deg, #f07474,#ffae45);
+  transition: "all 1s ease",
+}
+
+.League-Maker {
+  background: linear-gradient(60deg, #749bf0,#c39cd4);
+  transition: "all 1s ease",
 }
 
 .Navbar {
@@ -62,4 +72,19 @@
 .Nav-Content {
   z-index: 1;
   pointer-events:none;
+}
+
+.Navbar-Widget {
+  background: #222222;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  width: 150px;
+  height: 30px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  color: rgb(23, 23, 23);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Hind Madurai', sans-serif;
+  font-weight: bold;
 }

@@ -24,7 +24,6 @@ function Navbar( { leagueState, leagueSwitch } ) {
             });
     }, []);
 
-
     return (
         <nav class="Navbar">
             <a class="Navbar-Item">
@@ -40,7 +39,7 @@ function Navbar( { leagueState, leagueSwitch } ) {
                 </motion.div>
                 <img 
                     class="Nav-Content" 
-                    style= {  ballHover ? {filter: 'grayscale(0%)', scale: 2 } : {filter: 'grayscale(100%)'} } 
+                    style= {  ballHover || !leagueState ? {filter: 'grayscale(0%)', scale: 2 } : {filter: 'grayscale(100%)'} } 
                     src={ball}
                 />
             </a>
@@ -57,7 +56,9 @@ function Navbar( { leagueState, leagueSwitch } ) {
                 </motion.div>
                 <img
                     class="Nav-Content" 
-                    style= {  vsHover ? {filter: 'grayscale(0%)', scale: 2 } : {filter: 'grayscale(100%)'} } 
+                    style= {  
+                        vsHover || leagueState ? {filter: 'grayscale(0%)', scale: 2 } : {filter: 'grayscale(100%)'} 
+                    } 
                     src={vs}
                 />
             </a>

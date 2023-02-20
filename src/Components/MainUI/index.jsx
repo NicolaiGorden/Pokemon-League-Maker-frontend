@@ -4,8 +4,7 @@ import Navbar from '../Navbar/index';
 function MainUI( { leagueState, leagueSwitch }) {
     return (
         <div 
-            class="Main-UI"
-            style= {  leagueState ? {   background: "linear-gradient(60deg, #749bf0,#c39cd4)" } : { background: "linear-gradient(60deg, #f07474,#ffae45)" } } 
+            class= {leagueState ? 'Main-UI League-Maker' : 'Main-UI Pokemon-Maker' }
         >
             <Navbar
                 leagueState= {leagueState}
