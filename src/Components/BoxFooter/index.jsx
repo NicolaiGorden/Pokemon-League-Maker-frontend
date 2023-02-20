@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-function BoxFooter() {
+function BoxFooter( { boxHidden, setBoxHidden } ) {
     return (
-        <footer class="Box-Footer">BOX</footer>
+        <footer onClick={e => setBoxHidden(!boxHidden)} class="Box-Footer">BOX</footer>
     );
 }
 

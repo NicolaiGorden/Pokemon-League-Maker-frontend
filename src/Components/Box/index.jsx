@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-function Box() {
+function Box( { boxHidden, setBoxHidden } ) {
     return (
-        <div class='Box'></div>
+        <div class={boxHidden ? 'Box Move-Down' : 'Box'}></div>
     );
 }
 

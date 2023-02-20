@@ -10,6 +10,7 @@ import BoxFooter from './Components/BoxFooter';
 function App() {
 
   const [leagueModeOn, setLeagueModeOn] = useState(false)
+  const [boxHidden, setBoxHidden] = useState(false)
 
   return (
     <div className="App">
@@ -22,8 +23,14 @@ function App() {
         leagueState= { leagueModeOn }
         leagueSwitch= { setLeagueModeOn }
       />
-      <Box/>
-      <BoxFooter/>
+      <Box
+        boxHidden= {boxHidden}
+        setBoxHidden= {setBoxHidden}
+      />
+      <BoxFooter
+        boxHidden= {boxHidden}
+        setBoxHidden= {setBoxHidden}
+      />
     </div>
   );
 }
