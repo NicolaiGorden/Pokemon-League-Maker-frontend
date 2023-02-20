@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-function Navbar() {
+function Navbar( { leagueState, leagueSwitch } ) {
 
     const [ball, setBall] = useState("")
     const [vs, setVs] = useState("")
@@ -34,6 +34,8 @@ function Navbar() {
                     whileHover={{ scale: 1.1 }}
                     onHoverStart={e => {setBallHover(true)}}
                     onHoverEnd={e => {setBallHover(false)}}
+                    whileTap= {{ scale: 0.9 }}
+                    onClick= { e => leagueSwitch(false) }
                 >
                 </motion.div>
                 <img 
@@ -49,9 +51,11 @@ function Navbar() {
                     whileHover={{ scale: 1.1 }}
                     onHoverStart={e => {setVsHover(true)}}
                     onHoverEnd={e => {setVsHover(false)}}
+                    whileTap= {{ scale: 0.9 }}
+                    onClick= { e => leagueSwitch(true) }
                 >
                 </motion.div>
-                <img 
+                <img
                     class="Nav-Content" 
                     style= {  vsHover ? {filter: 'grayscale(0%)', scale: 2 } : {filter: 'grayscale(100%)'} } 
                     src={vs}
