@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 function PokemonMaker() {
     return (
@@ -22,10 +23,29 @@ function PokemonMaker() {
                     <option value="abi2">abi2</option>
                 </select>
             </form>
-            <div class="Moves">moves</div>
-            <div class="Save">save</div>
+            <div class="Moves">
+                <div class="Move">One</div>
+                <div class="Move">Two</div>
+                <div class="Move">Three</div>
+                <div class="Move">Four</div>
+            </div>
+            <div class="Save">
+                <motion.button 
+                    class="Save-Button"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    Save to Box
+                </motion.button>
+            </div>
         </div>
     );
 }
 
 export default PokemonMaker;
+
+// <motion.button 
+// class="save-button"
+// whileHover={{ scale: 1.1 }}
+// whileTap={{ scale: 0.95 }}
+// >SAVE</motion.button>
