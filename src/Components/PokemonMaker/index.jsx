@@ -3,10 +3,20 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 function PokemonMaker( { monRef, handleMonChange, currentMon, setCurrentMon, handleNicknameChange, nickname, setNickname, currentAbility, setCurrentAbility, abiRef, handleAbiChange }) {
 
+    const [monImg, setMonImg] = useState()
+
+    useEffect(() => {
+        fetch(`https://pokeapi.co/api/v2/pokemon/${currentMon.toLowerCase()}`)
+            .then(res => res.json())
+            .then((data) => {
+                setMonImg(data.sprites.front_default)
+            });
+    }, [currentMon]);
+
     return (
         <div class="PM-Content">
             <div class="PM-img-Container">
-                <img class="PM-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/908.png" alt="monname"/>
+                <img class="PM-img" src={monImg} alt="monname"/>
             </div>
 
             <form class="Pokeform">
@@ -14,14 +24,14 @@ function PokemonMaker( { monRef, handleMonChange, currentMon, setCurrentMon, han
                 <input class="Nickname-Input" type="text" maxlength="12" onChange= {handleNicknameChange} defaultValue= {currentMon}></input>
                 <label class="Label" style={{marginRight: "95px"}} >Species:</label>
                 <select class="Species-Select" type="text" maxlength="12" onChange= {handleMonChange}>
-                    {monRef.map(e => <option key={e}>{e}</option>)}
+                    {monRef.map((e, i) => <option key={i}>{e}</option>)}
                 </select>
             </form>
 
             <form class="Abiform">
                 <label class="Ability-Label">Ability:</label>
                 <select class="Ability-Select" onChange= {handleAbiChange} type="text" maxlength="12">
-                    {abiRef.map(e => <option key={e}>{e}</option>)}
+                    {abiRef.map((e, i) => <option key={i}>{e}</option>)}
                 </select>
             </form>
 

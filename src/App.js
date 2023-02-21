@@ -33,7 +33,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${currentMon}`)
+    fetch(`https://pokeapi.co/api/v2/pokemon/${currentMon.toLowerCase()}`)
         .then(res => res.json())
         .then((data) => {
             handleAbilityList(data.abilities)
@@ -43,7 +43,7 @@ function App() {
   //Handle data arrays
 
   function handleMonNames(monArr) {
-    let species = monArr.map(e => (e.name))
+    let species = monArr.map(e => (e.name.charAt(0).toUpperCase() + e.name.slice(1)))
     setMonRef(species)
     console.log(monRef)
   }
@@ -57,7 +57,7 @@ function App() {
   //Handle currentMon stats
 
   function handleMonChange(event) {
-    setCurrentMon(event.target.value)
+    setCurrentMon(event.target.value.toLowerCase())
   }
 
   function handleNicknameChange(event) {
