@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import NavbarWidget from './Components/NavbarWidget';
 import Box from './Components/Box';
 import BoxFooter from './Components/BoxFooter';
-
+import MoveFinder from './Components/MoveFinder';
 
 function App() {
 
@@ -16,6 +16,7 @@ function App() {
   //reference data arrays
   const [monRef, setMonRef] = useState([])
   const [abiRef, setAbiRef] = useState([])
+  const [movRef, setMovRef] = useState([])
 
   //currentMon stats
   const [currentMon, setCurrentMon] = useState('bulbasaur')
@@ -23,7 +24,6 @@ function App() {
   const [currentAbility, setCurrentAbility] = useState('overgrow')
 
   //fetch
-
   useEffect(() => {
     fetch('https://pokeapi.co/api/v2/pokemon/?limit=1008')
         .then(res => res.json())
@@ -37,11 +37,11 @@ function App() {
         .then(res => res.json())
         .then((data) => {
             handleAbilityList(data.abilities)
+            handleMoveList(data.moves)
         });
   }, [currentMon]);
 
   //Handle data arrays
-
   function handleMonNames(monArr) {
     let species = monArr.map(e => (e.name.charAt(0).toUpperCase() + e.name.slice(1)))
     setMonRef(species)
@@ -53,9 +53,13 @@ function App() {
     setAbiRef(abilities)
     setCurrentAbility(abilities[0])
   }
+
+  function handleMoveList(arr) {
+    let moves = arr.map(e => e.move.name)
+    setMovRef(moves)
+  }
   
   //Handle currentMon stats
-
   function handleMonChange(event) {
     setCurrentMon(event.target.value.toLowerCase())
   }
@@ -101,6 +105,10 @@ function App() {
       <BoxFooter
         boxHidden= { boxHidden }
         setBoxHidden= { setBoxHidden }
+      />
+      <MoveFinder 
+        leagueModeOn= { leagueModeOn }
+        movRef= { movRef }
       />
     </div>
   );

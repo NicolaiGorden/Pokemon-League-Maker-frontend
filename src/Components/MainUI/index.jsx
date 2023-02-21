@@ -6,13 +6,13 @@ import PokemonMaker from '../PokemonMaker';
 function MainUI( { leagueState, leagueSwitch, monRef, handleMonChange, currentMon, setCurrentMon, handleNicknameChange, nickname, setNickname, currentAbility, setCurrentAbility, abiRef, handleAbiChange }) {
     return (
         <div 
-            class= {leagueState ? 'Main-UI League-Maker' : 'Main-UI Pokemon-Maker' }
+            class= { leagueState ? 'Main-UI League-Maker' : 'Main-UI Pokemon-Maker' }
         >
             <Navbar
-                leagueState= {leagueState}
-                leagueSwitch= {leagueSwitch}
+                leagueState= { leagueState }
+                leagueSwitch= { leagueSwitch }
             />
-            {leagueState 
+            { leagueState 
                 ? 
                 <LeagueMaker/> 
                 : 
@@ -28,7 +28,7 @@ function MainUI( { leagueState, leagueSwitch, monRef, handleMonChange, currentMo
                     setCurrentAbility= { setCurrentAbility }
                     abiRef= { abiRef }
                     handleAbiChange= { handleAbiChange }
-                />}
+                /> }
         </div>
     );
 }
