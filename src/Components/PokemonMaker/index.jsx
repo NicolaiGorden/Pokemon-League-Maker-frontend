@@ -24,7 +24,7 @@ function PokemonMaker( { monRef, handleMonChange, currentMon, setCurrentMon, han
                 <input class="Nickname-Input" type="text" maxlength="12" onChange= {handleNicknameChange} defaultValue= {currentMon}></input>
                 <label class="Label" style={{marginRight: "95px"}} defaultValue= {currentMon} >Species:</label>
                 <select class="Species-Select" type="text" maxlength="12" onChange= {handleMonChange}>
-                    {monRef.map((e, i) => <option selected= {e.toLowerCase() == currentMon.toLowerCase() ? "selected" : console.log("inst")}key={e}>{e}</option>)}
+                    {monRef.map((e, i) => <option selected= {e.toLowerCase() == currentMon.toLowerCase() ? "selected" : ""}key={e}>{e}</option>)}
                 </select>
             </form>
 

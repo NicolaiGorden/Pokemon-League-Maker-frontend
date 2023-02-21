@@ -188,12 +188,12 @@
 }
 
 .Pokemon-Maker {
-  background: linear-gradient(60deg, #f07474,#ffae45);
+  background-image: linear-gradient(60deg, #f07474,#ffae45);
   transition: .2s
 }
 
 .League-Maker {
-  background: linear-gradient(60deg, #749bf0,#c39cd4);
+  background-image: linear-gradient(60deg, #749bf0,#c39cd4);
   transition: .2s
 }
 
@@ -299,6 +299,7 @@
   display: flex;
   align-items: center;
   margin-top: 10px;
+  margin-bottom: 5px;
   flex-direction: column;
   gap: 5px;
 }
@@ -306,8 +307,7 @@
 .Listed-Move {
   width: 230px;
   min-height: 25px;
-  outline: 2px solid #686868;
-  background-color:#d4d4d4;
+  outline: 2px solid #222222;
   margin: 2px;
   border-radius: 7px;
   display: flex;
@@ -359,4 +359,27 @@
   pointer-events: none;
   opacity: 0%;
   transition: .2s;
+}
+
+.TypeColors {
+  background-color: #A8A878; /* normal */
+  background-color: #C03028; /* fighting */
+  background-color: #A890F0; /* flying */
+  background-color: #9D3A9D; /* poison */
+  background-color: #E0C068; /* ground */
+  background-color: #B8A038; /* rock */
+  background-color: #A8B820; /* bug */
+  background-color: #705898; /* ghost */
+  background-color: #B8B8D0; /* steel */
+  background-color: #F08030; /* fire */
+  background-color: #6890F0; /* water */
+  background-color: #78C850; /* grass */
+  background-color: #F8D030; /* electric */
+  background-color: #F85888; /* psychic */
+  background-color: #98D8D8; /* ice */
+  background-color: #7038F8; /* dragon */
+  background-color: #705848; /* dark */
+  background-color: #DEA5DE; /* fairy */
+
+
 }

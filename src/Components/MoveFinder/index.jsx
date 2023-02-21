@@ -3,7 +3,7 @@ import ListedMove from '../ListedMove';
 import uuid from 'react-uuid';
 
 
-function MoveFinder( { leagueModeOn, movRef }) {
+function MoveFinder( { leagueModeOn, movRef, colorPicker }) {
 
     const [query, setQuery] = useState("")
     const filteredMoves = movRef.filter(move => move.toLowerCase().includes(query.toLowerCase()))
@@ -17,7 +17,7 @@ function MoveFinder( { leagueModeOn, movRef }) {
         <div class= {leagueModeOn ? "Move-Finder Gone": "Move-Finder" }>
             <input class="Move-Search" type="text" onChange= {handleSearch} placeholder="Search moves..."></input>
             <div class= "Move-Container">
-                {filteredMoves.map((e, i) => <ListedMove key= {uuid()} move= {e} filteredMoves= {filteredMoves}/>)}
+                {filteredMoves.map((e, i) => <ListedMove key= {uuid()} move= {e} filteredMoves= {filteredMoves} colorPicker= { colorPicker }/>)}
             </div>
         </div>
     );
