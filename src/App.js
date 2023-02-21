@@ -20,7 +20,7 @@ function App() {
 
   //currentMon stats
   const [currentMon, setCurrentMon] = useState('bulbasaur')
-  const [nickname, setNickname] = useState(currentMon)
+  const [nickname, setNickname] = useState('bulbasaur')
   const [currentAbility, setCurrentAbility] = useState('overgrow')
 
   //fetch

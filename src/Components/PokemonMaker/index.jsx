@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 function PokemonMaker( { monRef, handleMonChange, currentMon, setCurrentMon, handleNicknameChange, nickname, setNickname, currentAbility, setCurrentAbility, abiRef, handleAbiChange }) {
 
-    const [monImg, setMonImg] = useState()
+    const [monImg, setMonImg] = useState('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png')
 
     useEffect(() => {
         fetch(`https://pokeapi.co/api/v2/pokemon/${currentMon.toLowerCase()}`)
@@ -22,9 +22,9 @@ function PokemonMaker( { monRef, handleMonChange, currentMon, setCurrentMon, han
             <form class="Pokeform">
                 <label class="Label">Nickname:</label>
                 <input class="Nickname-Input" type="text" maxlength="12" onChange= {handleNicknameChange} defaultValue= {currentMon}></input>
-                <label class="Label" style={{marginRight: "95px"}} >Species:</label>
+                <label class="Label" style={{marginRight: "95px"}} defaultValue= {currentMon} >Species:</label>
                 <select class="Species-Select" type="text" maxlength="12" onChange= {handleMonChange}>
-                    {monRef.map((e, i) => <option key={e}>{e}</option>)}
+                    {monRef.map((e, i) => <option selected= {e.toLowerCase() == currentMon.toLowerCase() ? "selected" : console.log("inst")}key={e}>{e}</option>)}
                 </select>
             </form>
 
