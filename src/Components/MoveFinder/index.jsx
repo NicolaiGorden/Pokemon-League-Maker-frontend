@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ListedMove from '../ListedMove';
+import uuid from 'react-uuid';
+
 
 function MoveFinder( { leagueModeOn, movRef }) {
 
@@ -13,9 +15,9 @@ function MoveFinder( { leagueModeOn, movRef }) {
 
     return (
         <div class= {leagueModeOn ? "Move-Finder Gone": "Move-Finder" }>
-            <input class="Move-Search" type="text" onChange= {handleSearch}></input>
+            <input class="Move-Search" type="text" onChange= {handleSearch} placeholder="Search moves..."></input>
             <div class= "Move-Container">
-                {filteredMoves.map(e => <ListedMove move= {e} filteredMoves= {filteredMoves}/>)}
+                {filteredMoves.map((e, i) => <ListedMove key= {uuid()} move= {e} filteredMoves= {filteredMoves}/>)}
             </div>
         </div>
     );
