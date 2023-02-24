@@ -36,7 +36,7 @@ function PokemonMaker( { monRef, handleMonChange, currentMon, setCurrentMon, han
             </form>
 
             <div class="Moves">
-                <div class="Move">One</div>
+                <motion.div class="Move" onHoverStart={e => console.log("hover")}>One</motion.div>
                 <div class="Move">Two</div>
                 <div class="Move">Three</div>
                 <div class="Move">Four</div>

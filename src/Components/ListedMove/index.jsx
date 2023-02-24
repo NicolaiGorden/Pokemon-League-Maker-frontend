@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+
 function ListedMove( { move, filteredMoves, colorPicker } ) {
     
     const [typeColor, setTypeColor] = useState("#d4d4d4")
