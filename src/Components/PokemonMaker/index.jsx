@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-//dnd imports
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Container from 'react-bootstrap/Container'
-import { DndContext, closestCenter } from "@dnd-kit/core"
-import { arrayMove, sortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable"
 
 function PokemonMaker( { monRef, handleMonChange, currentMon, setCurrentMon, handleNicknameChange, nickname, setNickname, currentAbility, setCurrentAbility, abiRef, handleAbiChange }) {
 

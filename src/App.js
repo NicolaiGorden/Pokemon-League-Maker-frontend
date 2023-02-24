@@ -6,11 +6,6 @@ import NavbarWidget from './Components/NavbarWidget';
 import Box from './Components/Box';
 import BoxFooter from './Components/BoxFooter';
 import MoveFinder from './Components/MoveFinder';
-//dnd imports
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Container from 'react-bootstrap/Container'
-import { DndContext, closestCenter } from "@dnd-kit/core"
-import { arrayMove, sortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable"
 
 function App() {
   //switches 
@@ -120,45 +115,43 @@ function App() {
 
   return (
     <div className="App">
-      <DndContext>
-        <NavbarWidget
-          leagueState= { leagueModeOn }
-          leagueSwitch= { setLeagueModeOn }
-          text= {leagueModeOn ? "League Maker" : "Pokémon Maker"}
-        />
-        <MainUI
-          leagueState= { leagueModeOn }
-          leagueSwitch= { setLeagueModeOn }
+      <NavbarWidget
+        leagueState= { leagueModeOn }
+        leagueSwitch= { setLeagueModeOn }
+        text= {leagueModeOn ? "League Maker" : "Pokémon Maker"}
+      />
+      <MainUI
+        leagueState= { leagueModeOn }
+        leagueSwitch= { setLeagueModeOn }
 
-          abiRef= { abiRef }
-          monRef= { monRef }
+        abiRef= { abiRef }
+        monRef= { monRef }
 
-          handleMonChange= { handleMonChange }
-          currentMon= { currentMon }
-          setCurrentMon= { setCurrentMon }
+        handleMonChange= { handleMonChange }
+        currentMon= { currentMon }
+        setCurrentMon= { setCurrentMon }
 
-          handleNicknameChange= { handleNicknameChange }
-          nickname= { nickname }
-          setNickname= { setNickname }
+        handleNicknameChange= { handleNicknameChange }
+        nickname= { nickname }
+        setNickname= { setNickname }
 
-          handleAbiChange= { handleAbiChange }
-          currentAbility= { currentAbility }
-          setCurrentAbility= { setCurrentAbility }
-        />
-        <Box
-          boxHidden= { boxHidden }
-          setBoxHidden= { setBoxHidden}
-        />
-        <BoxFooter
-          boxHidden= { boxHidden }
-          setBoxHidden= { setBoxHidden }
-        />
-        <MoveFinder 
-          leagueModeOn= { leagueModeOn }
-          movRef= { movRef }
-          colorPicker= { colorPicker }
-        />
-      </DndContext>
+        handleAbiChange= { handleAbiChange }
+        currentAbility= { currentAbility }
+        setCurrentAbility= { setCurrentAbility }
+      />
+      <Box
+        boxHidden= { boxHidden }
+        setBoxHidden= { setBoxHidden}
+      />
+      <BoxFooter
+        boxHidden= { boxHidden }
+        setBoxHidden= { setBoxHidden }
+      />
+      <MoveFinder 
+        leagueModeOn= { leagueModeOn }
+        movRef= { movRef }
+        colorPicker= { colorPicker }
+      />
     </div>
   );
 }

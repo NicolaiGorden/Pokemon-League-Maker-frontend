@@ -2,17 +2,14 @@
 
 :root {
   background: #2c2c2c;
-  z-index: -100;
 }
 
 .App {
-  background: #2c2c2c;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   height: 80vh;
-  padding: 0;
 }
 
 .Main-UI {
@@ -25,7 +22,6 @@
   align-items: center;
   flex-direction: column;
   position: fixed;
-  z-index: 1;
 }
 
 .PM-Content {
@@ -268,7 +264,7 @@
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
 
   display: flex;
-  z-index: 0;
+  z-index: -1;
   transition: .4s
 }
 
