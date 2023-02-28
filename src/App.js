@@ -11,6 +11,7 @@ function App() {
   //switches 
   const [leagueModeOn, setLeagueModeOn] = useState(false)
   const [boxHidden, setBoxHidden] = useState(false)
+  const [editingMove, setEditingMove] = useState("none")
 
   //reference data arrays
   const [monRef, setMonRef] = useState([])
@@ -21,6 +22,10 @@ function App() {
   const [currentMon, setCurrentMon] = useState('bulbasaur')
   const [nickname, setNickname] = useState('bulbasaur')
   const [currentAbility, setCurrentAbility] = useState('overgrow')
+  const [move1, setMove1] = useState("bullet-seed")
+  const [move2, setMove2] = useState("razor-leaf")
+  const [move3, setMove3] = useState("poison-powder")
+  const [move4, setMove4] = useState("sleep-powder")
 
   //fetch
   useEffect(() => {
@@ -113,6 +118,11 @@ function App() {
     }
   }
 
+  function handleMoveClick(event) {
+    setEditingMove(event.target.id)
+    console.log(editingMove)
+  }
+
   return (
     <div className="App">
       <NavbarWidget
@@ -124,8 +134,12 @@ function App() {
         leagueState= { leagueModeOn }
         leagueSwitch= { setLeagueModeOn }
 
+        editingMove= { editingMove }
+        setEditingMove= { setEditingMove }
+
         abiRef= { abiRef }
         monRef= { monRef }
+        handleMoveClick= { handleMoveClick }
 
         handleMonChange= { handleMonChange }
         currentMon= { currentMon }
@@ -138,6 +152,17 @@ function App() {
         handleAbiChange= { handleAbiChange }
         currentAbility= { currentAbility }
         setCurrentAbility= { setCurrentAbility }
+
+        setMove1={ setMove1 }
+        setMove2={ setMove2 }
+        setMove3={ setMove3 }
+        setMove4={ setMove4 }
+        move1={ move1 }
+        move2={ move2 }
+        move3={ move3 }
+        move4={ move4 }
+
+        colorPicker= { colorPicker }
       />
       <Box
         boxHidden= { boxHidden }
@@ -148,9 +173,15 @@ function App() {
         setBoxHidden= { setBoxHidden }
       />
       <MoveFinder 
-        leagueModeOn= { leagueModeOn }
-        movRef= { movRef }
-        colorPicker= { colorPicker }
+        leagueModeOn= { leagueModeOn } 
+        movRef= { movRef } 
+        colorPicker= { colorPicker } 
+        editingMove= { editingMove }
+        setEditingMove= { setEditingMove }
+        setMove1= { setMove1 }
+        setMove2= { setMove2 }
+        setMove3= { setMove3 }
+        setMove4= { setMove4 }
       />
     </div>
   );
