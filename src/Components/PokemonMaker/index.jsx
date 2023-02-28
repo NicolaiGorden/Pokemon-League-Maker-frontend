@@ -36,10 +36,6 @@ function PokemonMaker( {
             .then(res => res.json())
             .then((data) => {
                 setMonImg(data.sprites.front_default)
-                setMove1(data.moves[1].move.name)
-                setMove2(data.moves[2].move.name)
-                setMove3(data.moves[3].move.name)
-                setMove4(data.moves[4].move.name)
             });
     }, [currentMon]);
 

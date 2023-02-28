@@ -22,12 +22,31 @@ function App() {
   const [currentMon, setCurrentMon] = useState('bulbasaur')
   const [nickname, setNickname] = useState('bulbasaur')
   const [currentAbility, setCurrentAbility] = useState('overgrow')
-  const [move1, setMove1] = useState("bullet-seed")
-  const [move2, setMove2] = useState("razor-leaf")
-  const [move3, setMove3] = useState("poison-powder")
-  const [move4, setMove4] = useState("sleep-powder")
+  const [move1, setMove1] = useState("swords-dance")
+  const [move2, setMove2] = useState("cut")
+  const [move3, setMove3] = useState("bind")
+  const [move4, setMove4] = useState("vine-whip")
+  const [monId, setMonId] = useState(undefined)
+
+  useEffect(()=> {
+    setCurrentMon('bulbasaur')
+    setNickname('bulbasaur')
+    setCurrentAbility("overgrow")
+    setMonId(undefined)
+    fetch(`https://pokeapi.co/api/v2/pokemon/${currentMon.toLowerCase()}`)
+    .then(res => res.json())
+    .then((data) => {
+        handleAbilityList(data.abilities)
+        handleMoveList(data.moves)
+        setMove1(data.moves[1].move.name)
+        setMove2(data.moves[2].move.name)
+        setMove3(data.moves[3].move.name)
+        setMove4(data.moves[4].move.name)
+    });
+  }, [leagueModeOn])
 
   function handleFormSubmit(nickname, currentMon, currentAbility, move1, move2, move3, move4) {
+    //IF THERE IS NO MON ID, NORMAL SUBMIT
     fetch("http://localhost:9292/mons", {
         method: "POST",
         headers: {
@@ -45,6 +64,7 @@ function App() {
     })
     .then()
     .then()
+  //IF THERE IS A MON ID, PATCH
 }
 
   //fetch
@@ -53,6 +73,10 @@ function App() {
         .then(res => res.json())
         .then((data) => {
             handleMonNames(data.results)
+            setMove1(data.moves[1].move.name)
+            setMove2(data.moves[2].move.name)
+            setMove3(data.moves[3].move.name)
+            setMove4(data.moves[4].move.name)
         });
   }, []);
 
@@ -62,6 +86,10 @@ function App() {
         .then((data) => {
             handleAbilityList(data.abilities)
             handleMoveList(data.moves)
+            setMove1(data.moves[1].move.name)
+            setMove2(data.moves[2].move.name)
+            setMove3(data.moves[3].move.name)
+            setMove4(data.moves[4].move.name)
         });
   }, [currentMon]);
 
