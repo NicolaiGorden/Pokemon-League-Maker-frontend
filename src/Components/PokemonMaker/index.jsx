@@ -25,7 +25,8 @@ function PokemonMaker( {
     move2,
     move3,
     move4,
-    colorPicker
+    colorPicker,
+    handleFormSubmit
 }) {
 
     const [monImg, setMonImg] = useState('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png')
@@ -41,7 +42,6 @@ function PokemonMaker( {
                 setMove4(data.moves[4].move.name)
             });
     }, [currentMon]);
-    
 
     function checkEditing(editing, moveID) {
         if (editing == "none") {
@@ -88,6 +88,7 @@ function PokemonMaker( {
                     class={editingMove == "none" ? "Save-Button" : "Save-Button Deselected-No-Scale"}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
+                    onClick={e => handleFormSubmit(nickname, currentMon, currentAbility, move1, move2, move3, move4)}
                 >
                     Save to Box
                 </motion.button>

@@ -27,6 +27,26 @@ function App() {
   const [move3, setMove3] = useState("poison-powder")
   const [move4, setMove4] = useState("sleep-powder")
 
+  function handleFormSubmit(nickname, currentMon, currentAbility, move1, move2, move3, move4) {
+    fetch("http://localhost:9292/mons", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            nickname: nickname,
+            species: currentMon,
+            ability: currentAbility,
+            move1: move1,
+            move2: move2,
+            move3: move3,
+            move4: move4,
+        })
+    })
+    .then()
+    .then()
+}
+
   //fetch
   useEffect(() => {
     fetch('https://pokeapi.co/api/v2/pokemon/?limit=1008')
@@ -163,6 +183,7 @@ function App() {
         move4={ move4 }
 
         colorPicker= { colorPicker }
+        handleFormSubmit= { handleFormSubmit }
       />
       <Box
         boxHidden= { boxHidden }

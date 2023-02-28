@@ -29,6 +29,7 @@ function MainUI( {
     move3,
     move4,
     colorPicker,
+    handleFormSubmit
 }) {
     return (
         <div 
@@ -66,6 +67,7 @@ function MainUI( {
                     move3={ move3 }
                     move4={ move4 }
                     colorPicker= { colorPicker }
+                    handleFormSubmit= { handleFormSubmit }
                 /> }
         </div>
     );
