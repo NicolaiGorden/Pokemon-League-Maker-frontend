@@ -29,7 +29,9 @@ function MainUI( {
     move3,
     move4,
     colorPicker,
-    handleFormSubmit
+    handleFormSubmit,
+    setBoxedMons,
+    monId
 }) {
     return (
         <div 
@@ -68,6 +70,8 @@ function MainUI( {
                     move4={ move4 }
                     colorPicker= { colorPicker }
                     handleFormSubmit= { handleFormSubmit }
+                    setBoxedMons={ setBoxedMons }
+                    monId= {monId}
                 /> }
         </div>
     );

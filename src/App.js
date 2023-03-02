@@ -12,11 +12,13 @@ function App() {
   const [leagueModeOn, setLeagueModeOn] = useState(false)
   const [boxHidden, setBoxHidden] = useState(false)
   const [editingMove, setEditingMove] = useState("none")
+  const [speciesChange, setSpeciesChange] = useState(false)
 
   //reference data arrays
   const [monRef, setMonRef] = useState([])
   const [abiRef, setAbiRef] = useState([])
   const [movRef, setMovRef] = useState([])
+  const [boxedMons, setBoxedMons] = useState([])
 
   //currentMon stats
   const [currentMon, setCurrentMon] = useState('bulbasaur')
@@ -28,6 +30,14 @@ function App() {
   const [move4, setMove4] = useState("vine-whip")
   const [monId, setMonId] = useState(undefined)
 
+  useEffect(() => {
+    fetch('http://localhost:9292/mons')
+        .then(res => res.json())
+        .then((data) => {
+          setBoxedMons(data)
+        })
+  }, [])
+
   useEffect(()=> {
     setCurrentMon('bulbasaur')
     setNickname('bulbasaur')
@@ -38,10 +48,10 @@ function App() {
     .then((data) => {
         handleAbilityList(data.abilities)
         handleMoveList(data.moves)
-        setMove1(data.moves[1].move.name)
-        setMove2(data.moves[2].move.name)
-        setMove3(data.moves[3].move.name)
-        setMove4(data.moves[4].move.name)
+        setMove1(data[1].moves[1].move.name)
+        setMove2(data[1].moves[2].move.name)
+        setMove3(data[1].moves[3].move.name)
+        setMove4(data[1].moves[4].move.name)
     });
   }, [leagueModeOn])
 
@@ -62,10 +72,44 @@ function App() {
             move4: move4,
         })
     })
-    .then()
-    .then()
-  //IF THERE IS A MON ID, PATCH
-}
+    .then(r => r.json())
+    .then(data => {
+      setMonId(undefined)
+      setBoxedMons([...boxedMons, data])
+    })
+    //IF THERE IS A MON ID, PATCH
+  }
+
+  function handleDeleteClick(pokeId) {
+    fetch(`http://localhost:9292/mons/${pokeId}`, {
+      method: "DELETE",
+    })
+    .then(setBoxedMons(boxedMons.filter(e => e.id !== pokeId)))
+  }
+
+  function handleEditClick(pokeId) {
+    fetch(`http://localhost:9292/mons/${pokeId}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        setNickname(data.nickname)
+        setCurrentAbility(data.ability)
+        setCurrentMon(data.species)
+        setMove1(data.move1)
+        setMove2(data.move2)
+        setMove3(data.move3)
+        setMove4(data.move4)
+        setMonId(data.id)
+        fetch(`https://pokeapi.co/api/v2/pokemon/${data.species.toLowerCase()}`)
+        .then(res => res.json())
+        .then((data) => {
+            console.log(data)
+            handleAbilityList(data.abilities)
+            handleMoveList(data.moves)
+          })
+      })
+
+  }
 
   //fetch
   useEffect(() => {
@@ -73,10 +117,6 @@ function App() {
         .then(res => res.json())
         .then((data) => {
             handleMonNames(data.results)
-            setMove1(data.moves[1].move.name)
-            setMove2(data.moves[2].move.name)
-            setMove3(data.moves[3].move.name)
-            setMove4(data.moves[4].move.name)
         });
   }, []);
 
@@ -91,7 +131,7 @@ function App() {
             setMove3(data.moves[3].move.name)
             setMove4(data.moves[4].move.name)
         });
-  }, [currentMon]);
+  }, [speciesChange]);
 
   //Handle data arrays
   function handleMonNames(monArr) {
@@ -103,7 +143,6 @@ function App() {
   function handleAbilityList(arr) {
     let abilities = arr.map(e => e.ability.name)
     setAbiRef(abilities)
-    setCurrentAbility(abilities[0])
   }
 
   function handleMoveList(arr) {
@@ -114,6 +153,7 @@ function App() {
   //Handle currentMon stats
   function handleMonChange(event) {
     setCurrentMon(event.target.value.toLowerCase())
+    setSpeciesChange(!speciesChange)
   }
 
   function handleNicknameChange(event) {
@@ -210,12 +250,18 @@ function App() {
         move3={ move3 }
         move4={ move4 }
 
+        monId={ monId }
+
         colorPicker= { colorPicker }
         handleFormSubmit= { handleFormSubmit }
       />
       <Box
         boxHidden= { boxHidden }
         setBoxHidden= { setBoxHidden}
+        boxedMons= { boxedMons }
+        editingMove= { editingMove }
+        handleDeleteClick={handleDeleteClick}
+        handleEditClick={handleEditClick}
       />
       <BoxFooter
         boxHidden= { boxHidden }

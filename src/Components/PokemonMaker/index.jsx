@@ -26,7 +26,9 @@ function PokemonMaker( {
     move3,
     move4,
     colorPicker,
-    handleFormSubmit
+    handleFormSubmit,
+    setBoxedMons,
+    monId
 }) {
 
     const [monImg, setMonImg] = useState('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png')
@@ -58,7 +60,7 @@ function PokemonMaker( {
 
             <form class="Pokeform">
                 <label class="Label">Nickname:</label>
-                <input class={editingMove == "none" ? "Nickname-Input" : "Nickname-Input Deselected-No-Scale"} type="text" maxlength="12" onChange= {handleNicknameChange} defaultValue= {currentMon}></input>
+                <input class={editingMove == "none" ? "Nickname-Input" : "Nickname-Input Deselected-No-Scale"} type="text" maxlength="12" onChange= {handleNicknameChange} value= {nickname}></input>
                 <label class="Label" style={{marginRight: "95px"}} defaultValue= {currentMon} >Species:</label>
                 <select class={editingMove == "none" ? "Species-Select" : "Species-Select Deselected-No-Scale"} type="text" maxlength="12" onChange= {handleMonChange}>
                     {monRef.map((e, i) => <option selected= {e.toLowerCase() == currentMon.toLowerCase() ? "selected" : ""}key={e}>{e}</option>)}
@@ -66,9 +68,9 @@ function PokemonMaker( {
             </form>
 
             <form class="Abiform">
-                <label class="Ability-Label">Ability:</label>
+                <label class="Ability-Label" >Ability:</label>
                 <select class={editingMove == "none" ? "Ability-Select" : "Ability-Select Deselected-No-Scale"} onChange= {handleAbiChange} type="text" maxlength="12">
-                    {abiRef.map((e, i) => <option key={i}>{e}</option>)}
+                    {abiRef.map((e, i) => <option selected={e == currentAbility ? "selected" : ""} key={i}>{e}</option>)}
                 </select>
             </form>
 
@@ -86,7 +88,7 @@ function PokemonMaker( {
                     whileTap={{ scale: 0.95 }}
                     onClick={e => handleFormSubmit(nickname, currentMon, currentAbility, move1, move2, move3, move4)}
                 >
-                    Save to Box
+                    {monId ? "Save Edits" : "Save to Box"}
                 </motion.button>
             </div>
 
