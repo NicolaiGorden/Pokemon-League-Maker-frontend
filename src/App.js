@@ -56,13 +56,45 @@ function App() {
   }, [leagueModeOn])
 
   function handleFormSubmit(nickname, currentMon, currentAbility, move1, move2, move3, move4) {
-    //IF THERE IS NO MON ID, NORMAL SUBMIT
-    fetch("http://localhost:9292/mons", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
+    if (monId === undefined) {
+      fetch("http://localhost:9292/mons", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+              nickname: nickname,
+              species: currentMon,
+              ability: currentAbility,
+              move1: move1,
+              move2: move2,
+              move3: move3,
+              move4: move4,
+          })
+      })
+      .then(r => r.json())
+      .then(data => {
+        setMonId(undefined)
+        setBoxedMons([...boxedMons, data])
+      })
+    } else {
+      fetch(`http://localhost:9292/mons/${monId}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+              nickname: nickname,
+              species: currentMon,
+              ability: currentAbility,
+              move1: move1,
+              move2: move2,
+              move3: move3,
+              move4: move4,
+          }),
+        })
+        .then(data => {
+          const newObj = {
             nickname: nickname,
             species: currentMon,
             ability: currentAbility,
@@ -70,14 +102,10 @@ function App() {
             move2: move2,
             move3: move3,
             move4: move4,
+          }
+            setBoxedMons(boxedMons.map(mon => (mon.id === monId ? Object.assign(mon, newObj) : mon)))
         })
-    })
-    .then(r => r.json())
-    .then(data => {
-      setMonId(undefined)
-      setBoxedMons([...boxedMons, data])
-    })
-    //IF THERE IS A MON ID, PATCH
+    }
   }
 
   function handleDeleteClick(pokeId) {

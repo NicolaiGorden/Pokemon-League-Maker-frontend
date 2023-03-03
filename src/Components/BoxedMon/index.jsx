@@ -11,7 +11,7 @@ function BoxedMon( {nickname, species, id, handleDeleteClick, handleEditClick} )
             .then((data) => {
                 setImg(data.sprites.versions["generation-viii"].icons.front_default)
             })
-    }, [])
+    }, [species])
 
     return (
         <div class="Boxed-Mon">
