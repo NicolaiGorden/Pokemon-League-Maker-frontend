@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import BoxedMon from '../BoxedMon';
 
-function Box( { boxHidden, setBoxHidden, boxedMons, editingMove, handleDeleteClick, handleEditClick } ) {
+function Box( { boxHidden, setBoxHidden, boxedMons, editingMove, handleDeleteClick, handleEditClick, leagueModeOn } ) {
 
     const [query, setQuery] = useState("")
     let boxedMonRef = boxedMons.filter(mon => mon.nickname.toLowerCase().includes(query.toLowerCase())).sort()
@@ -25,6 +25,7 @@ function Box( { boxHidden, setBoxHidden, boxedMons, editingMove, handleDeleteCli
                     species={mon.species}
                     handleDeleteClick={handleDeleteClick}
                     handleEditClick={handleEditClick}
+                    leagueModeOn={leagueModeOn}
                     />)}
             </div>
         </div>

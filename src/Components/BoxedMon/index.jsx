@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-function BoxedMon( {nickname, species, id, handleDeleteClick, handleEditClick} ) {
+function BoxedMon( {nickname, species, id, handleDeleteClick, handleEditClick, leagueModeOn} ) {
     
     const [img, setImg] = useState('')
 
@@ -14,19 +14,22 @@ function BoxedMon( {nickname, species, id, handleDeleteClick, handleEditClick} )
     }, [species])
 
     return (
-        <div class="Boxed-Mon">
+        <motion.div 
+            class="Boxed-Mon"
+            whileHover={leagueModeOn ? { scale: 1.04 } : ""}
+            whileTap={leagueModeOn ? { scale: 0.98 } : ""}>
             <div className="Box-Mon-Img-Container">
                 <img className="Box-Mon-Img" src={img}/>
             </div>
-            <div className="Name-And-Nickname">
-                <div className='Nickname'>
+            <div className={leagueModeOn ? "Name-And-Nickname-Big" : "Name-And-Nickname"}>
+                <div className={leagueModeOn ? "Nickname-Big" : "Nickname"}>
                     {nickname}
                 </div>
-                <div className='Species'>
+                <div className={leagueModeOn ? "Species-Big" : "Species"}>
                     ({species})
                 </div>
             </div>
-            <div class="Box-Button-Container">
+            {leagueModeOn ? "" : <div class="Box-Button-Container">
                 <motion.button 
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
@@ -42,8 +45,8 @@ function BoxedMon( {nickname, species, id, handleDeleteClick, handleEditClick} )
                     >
                     DELETE
                 </motion.button>
-            </div>
-        </div>
+            </div>}
+        </motion.div>
     );
 }
 

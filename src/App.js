@@ -13,6 +13,7 @@ function App() {
   const [boxHidden, setBoxHidden] = useState(false)
   const [editingMove, setEditingMove] = useState("none")
   const [speciesChange, setSpeciesChange] = useState(false)
+  const [afterEdit, setAfterEdit] = useState(false)
 
   //reference data arrays
   const [monRef, setMonRef] = useState([])
@@ -24,10 +25,10 @@ function App() {
   const [currentMon, setCurrentMon] = useState('bulbasaur')
   const [nickname, setNickname] = useState('bulbasaur')
   const [currentAbility, setCurrentAbility] = useState('overgrow')
-  const [move1, setMove1] = useState("swords-dance")
-  const [move2, setMove2] = useState("cut")
-  const [move3, setMove3] = useState("bind")
-  const [move4, setMove4] = useState("vine-whip")
+  const [move1, setMove1] = useState("razor-wind")
+  const [move2, setMove2] = useState("swords-dance")
+  const [move3, setMove3] = useState("cut")
+  const [move4, setMove4] = useState("bind")
   const [monId, setMonId] = useState(undefined)
 
   useEffect(() => {
@@ -43,17 +44,17 @@ function App() {
     setNickname('bulbasaur')
     setCurrentAbility("overgrow")
     setMonId(undefined)
-    fetch(`https://pokeapi.co/api/v2/pokemon/${currentMon.toLowerCase()}`)
+    fetch(`https://pokeapi.co/api/v2/pokemon/bulbasaur`)
     .then(res => res.json())
     .then((data) => {
         handleAbilityList(data.abilities)
         handleMoveList(data.moves)
-        setMove1(data[1].moves[1].move.name)
-        setMove2(data[1].moves[2].move.name)
-        setMove3(data[1].moves[3].move.name)
-        setMove4(data[1].moves[4].move.name)
+        setMove1(data.moves[0].move.name)
+        setMove2(data.moves[1].move.name)
+        setMove3(data.moves[2].move.name)
+        setMove4(data.moves[3].move.name)
     });
-  }, [leagueModeOn])
+  }, [leagueModeOn, afterEdit])
 
   function handleFormSubmit(nickname, currentMon, currentAbility, move1, move2, move3, move4) {
     if (monId === undefined) {
@@ -103,7 +104,9 @@ function App() {
             move3: move3,
             move4: move4,
           }
+            setMonId(undefined)
             setBoxedMons(boxedMons.map(mon => (mon.id === monId ? Object.assign(mon, newObj) : mon)))
+            setAfterEdit(!afterEdit)
         })
     }
   }
@@ -154,10 +157,10 @@ function App() {
         .then((data) => {
             handleAbilityList(data.abilities)
             handleMoveList(data.moves)
-            setMove1(data.moves[1].move.name)
-            setMove2(data.moves[2].move.name)
-            setMove3(data.moves[3].move.name)
-            setMove4(data.moves[4].move.name)
+            setMove1(data.moves[0].move.name)
+            setMove2(data.moves[1].move.name)
+            setMove3(data.moves[2].move.name)
+            setMove4(data.moves[3].move.name)
         });
   }, [speciesChange]);
 
@@ -290,6 +293,7 @@ function App() {
         editingMove= { editingMove }
         handleDeleteClick={handleDeleteClick}
         handleEditClick={handleEditClick}
+        leagueModeOn={ leagueModeOn }
       />
       <BoxFooter
         boxHidden= { boxHidden }
