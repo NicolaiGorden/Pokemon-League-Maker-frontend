@@ -1,7 +1,7 @@
 # POKEMON LEAGUE MAKER
 
 This project uses the [pokéAPI](https://pokeapi.co/).
-You can find the backend [here](https://github.com/NicolaiGorden/phase-3-sinatra-react-project/commits/main)
+You can find the backend [here](https://github.com/NicolaiGorden/phase-3-sinatra-react-project)
 
 ## Pokémon Maker
 
