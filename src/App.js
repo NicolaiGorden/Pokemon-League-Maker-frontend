@@ -14,6 +14,7 @@ function App() {
   const [editingMove, setEditingMove] = useState("none")
   const [speciesChange, setSpeciesChange] = useState(false)
   const [afterEdit, setAfterEdit] = useState(false)
+  const [monClick, setMonClick] = useState(false)
 
   //reference data arrays
   const [monRef, setMonRef] = useState([])
@@ -30,6 +31,9 @@ function App() {
   const [move3, setMove3] = useState("cut")
   const [move4, setMove4] = useState("bind")
   const [monId, setMonId] = useState(undefined)
+
+  const [trainerFocus, setTrainerFocus] = useState('')
+  const [slotFocus, setSlotFocus] = useState('')
 
   useEffect(() => {
     fetch('http://localhost:9292/mons')
@@ -285,6 +289,14 @@ function App() {
 
         colorPicker= { colorPicker }
         handleFormSubmit= { handleFormSubmit }
+        setBoxHidden= { setBoxHidden }
+
+        trainerFocus= {trainerFocus}
+        setTrainerFocus= {setTrainerFocus}
+        setSlotFocus= {setSlotFocus}
+
+        monClick= {monClick}
+        setMonClick= {setMonClick}
       />
       <Box
         boxHidden= { boxHidden }
@@ -294,10 +306,15 @@ function App() {
         handleDeleteClick={handleDeleteClick}
         handleEditClick={handleEditClick}
         leagueModeOn={ leagueModeOn }
+        trainerFocus= { trainerFocus }
+        slotFocus= { slotFocus }
+        monClick= { monClick }
+        setMonClick= { setMonClick }
       />
       <BoxFooter
         boxHidden= { boxHidden }
         setBoxHidden= { setBoxHidden }
+        leagueModeOn={ leagueModeOn }
       />
       <MoveFinder 
         leagueModeOn= { leagueModeOn } 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-function BoxedMon( {nickname, species, id, handleDeleteClick, handleEditClick, leagueModeOn} ) {
+function BoxedMon( {nickname, species, id, handleDeleteClick, handleEditClick, leagueModeOn, trainerFocus, slotFocus, monClick, setMonClick} ) {
     
     const [img, setImg] = useState('')
 
@@ -17,7 +17,93 @@ function BoxedMon( {nickname, species, id, handleDeleteClick, handleEditClick, l
         <motion.div 
             class="Boxed-Mon"
             whileHover={leagueModeOn ? { scale: 1.04 } : ""}
-            whileTap={leagueModeOn ? { scale: 0.98 } : ""}>
+            whileTap={leagueModeOn ? { scale: 0.98 } : ""}
+            onClick={e => {
+                setMonClick(!monClick)
+                if (leagueModeOn) {
+                    switch (slotFocus) {
+                        case "1":
+                            fetch(`http://localhost:9292/trainers/patchmon1/${trainerFocus}`, {
+                                method: "PATCH",
+                                headers: {
+                                  "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({
+                                    mon1_id: id,
+                                }),
+                            })
+                            .then(res => res.json())
+                            .then(data => console.log(data))
+                            break;
+                        case "2":
+                            fetch(`http://localhost:9292/trainers/patchmon2/${trainerFocus}`, {
+                                method: "PATCH",
+                                headers: {
+                                  "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({
+                                    mon2_id: id,
+                                }),
+                            })
+                            .then(res => res.json())
+                            .then(data => console.log(data))
+                            break;
+                        case "3":
+                            fetch(`http://localhost:9292/trainers/patchmon3/${trainerFocus}`, {
+                                method: "PATCH",
+                                headers: {
+                                  "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({
+                                    mon3_id: id,
+                                }),
+                            })
+                            .then(res => res.json())
+                            .then(data => console.log(data))
+                            break;
+                        case "4":
+                            fetch(`http://localhost:9292/trainers/patchmon4/${trainerFocus}`, {
+                                method: "PATCH",
+                                headers: {
+                                  "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({
+                                    mon4_id: id,
+                                }),
+                            })
+                            .then(res => res.json())
+                            .then(data => console.log(data))
+                            break;
+                        case "5":
+                            fetch(`http://localhost:9292/trainers/patchmon5/${trainerFocus}`, {
+                                method: "PATCH",
+                                headers: {
+                                  "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({
+                                    mon5_id: id,
+                                }),
+                            })
+                            .then(res => res.json())
+                            .then(data => console.log(data))
+                            break;
+                        case "6":
+                            fetch(`http://localhost:9292/trainers/patchmon6/${trainerFocus}`, {
+                                method: "PATCH",
+                                headers: {
+                                  "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({
+                                    mon6_id: id,
+                                }),
+                            })
+                            .then(res => res.json())
+                            .then(data => console.log(data))
+                            break;
+                    }
+                }
+            }}
+        >
             <div className="Box-Mon-Img-Container">
                 <img className="Box-Mon-Img" src={img}/>
             </div>

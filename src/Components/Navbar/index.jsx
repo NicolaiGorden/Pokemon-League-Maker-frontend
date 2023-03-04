@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-function Navbar( { leagueState, leagueSwitch } ) {
+function Navbar( { leagueState, leagueSwitch, setBoxHidden } ) {
 
     const [ball, setBall] = useState("")
     const [vs, setVs] = useState("")
@@ -51,7 +51,10 @@ function Navbar( { leagueState, leagueSwitch } ) {
                     onHoverStart={e => {setVsHover(true)}}
                     onHoverEnd={e => {setVsHover(false)}}
                     whileTap= {{ scale: 0.9 }}
-                    onClick= { e => leagueSwitch(true) }
+                    onClick= { e => {
+                        leagueSwitch(true)
+                        setBoxHidden(false)
+                    }}
                 >
                 </motion.div>
                 <img

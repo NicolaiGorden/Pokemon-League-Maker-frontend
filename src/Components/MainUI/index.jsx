@@ -31,7 +31,15 @@ function MainUI( {
     colorPicker,
     handleFormSubmit,
     setBoxedMons,
-    monId
+    monId,
+    setBoxHidden,
+    editingTeam,
+    setEditingTeam,
+    setTrainerFocus,
+    setSlotFocus,
+    monClick,
+    setMonClick,
+    trainerFocus
 }) {
     return (
         <div 
@@ -40,10 +48,19 @@ function MainUI( {
             <Navbar
                 leagueState= { leagueState }
                 leagueSwitch= { leagueSwitch }
+                setBoxHidden= { setBoxHidden}
             />
             { leagueState 
                 ? 
-                <LeagueMaker/> 
+                <LeagueMaker
+                    setBoxHidden= { setBoxHidden}
+                    editingTeam= { editingTeam }
+                    trainerFocus= { trainerFocus }
+                    setTrainerFocus= {setTrainerFocus}
+                    setSlotFocus= {setSlotFocus}
+                    monClick= {monClick}
+                    setMonClick= {setMonClick}
+                /> 
                 : 
                 <PokemonMaker 
                     monRef= { monRef } 

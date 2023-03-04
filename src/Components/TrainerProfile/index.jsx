@@ -1,20 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import profileImg from '../../Data/img/surge.png'
 
-function TrainerProfile( { position } ) {
+function TrainerProfile( { trainer, trainerFocus, setTrainerFocus, setSlotFocus, setBoxHidden, monClick, setMonClick} ) {
 
-    //THIS WILL BE PASSED DOWN AS A PROP.
-    const trainerObj = {
-        name: "Brock",
-        position: "gym1",
-        mon1Id: 1,
-        mon2Id: 2,
-        mon3Id: 3,
-        mon4Id: undefined,
-        mon5Id: undefined,
-        mon6Id: undefined
-    }
+    const [trainerObj, setTrainerObj] = useState()
+    const isMounted = useRef(false)
+
+    useEffect(() => {
+        setTrainerObj(trainer)
+    }, [])
+
+    useEffect(() => {
+        if (isMounted.current) {
+            if (trainerFocus === trainer.id) {
+                console.log(`hi, I'm ${trainer.occupation}`)
+            }
+            fetch(`http://localhost:9292/trainers/${trainer.id}`)
+                .then(res => res.json())
+                .then(data => setTrainerObj(data))
+        }
+    }, [monClick])
 
     const [mon1, setMon1] = useState(undefined)
     const [mon2, setMon2] = useState(undefined)
@@ -32,9 +38,15 @@ function TrainerProfile( { position } ) {
 
     let team = [mon1, mon2, mon3, mon4, mon5, mon6]
 
+    function handleMonClick(trainer, monSlot) {
+        setTrainerFocus(trainer.id)
+        setSlotFocus(monSlot)
+        setBoxHidden(true)
+        isMounted.current = true
+    }
+
     function fetchImages(mon, slot) {
         if (mon !== undefined) {
-            console.log(`hi, I'm ${mon.nickname}!`)
             fetch(`https://pokeapi.co/api/v2/pokemon/${mon.species}`)
                 .then(res => res.json())
                 .then((data) => {
@@ -74,31 +86,35 @@ function TrainerProfile( { position } ) {
     }, [mon1, mon2, mon3, mon4, mon5, mon6])
 
     useEffect(() => {
+        console.log(trainerObj)
         fetch('http://localhost:9292/mons')
             .then(res => res.json())
             .then((data) => {
                 data.map(mon => {
-                    if (mon.id === trainerObj.mon1Id) {
+                    if (mon.id === trainerObj.mon1_id) {
+                        console.log(mon)
                         setMon1(mon)
-                    } else if (mon.id === trainerObj.mon2Id){
+                    } else if (mon.id === trainerObj.mon2_id){
                         setMon2(mon)
-                    } else if (mon.id === trainerObj.mon3Id){
+                    } else if (mon.id === trainerObj.mon3_id){
                         setMon3(mon)
-                    } else if (mon.id === trainerObj.mon4Id){
+                    } else if (mon.id === trainerObj.mon4_id){
                         setMon4(mon)
-                    } else if (mon.id === trainerObj.mon5Id){
+                    } else if (mon.id === trainerObj.mon5_id){
                         setMon5(mon)
-                    } else if (mon.id === trainerObj.mon6Id){
+                    } else if (mon.id === trainerObj.mon6_id){
                         setMon6(mon)
                     }
                 })
             })
-      }, [])
+      }, [trainerObj])
 
+    
+    if (trainer) {
     return (
         <div className="Trainer-Container" id="gym2">
             <div className='Trainer-Tag'>
-                {position}
+                {trainer.occupation}
             </div>
             <div className="Trainer">
                 <div className="Trainer-Profile">
@@ -112,6 +128,7 @@ function TrainerProfile( { position } ) {
                             className="Team-BG"
                             whileHover={{ scale: 1.1 }}
                             whileTap= {{ scale: 0.9 }}
+                            onClick={e => handleMonClick(trainer, "1")}
                         >
 
                         </motion.div>
@@ -125,6 +142,7 @@ function TrainerProfile( { position } ) {
                             className="Team-BG"
                             whileHover={{ scale: 1.1 }}
                             whileTap= {{ scale: 0.9 }}
+                            onClick={e => handleMonClick(trainer, "2")}
                         >
 
                         </motion.div>
@@ -138,6 +156,7 @@ function TrainerProfile( { position } ) {
                             className="Team-BG"
                             whileHover={{ scale: 1.1 }}
                             whileTap= {{ scale: 0.9 }}
+                            onClick={e => handleMonClick(trainer, "3")}
                         >
 
                         </motion.div>
@@ -151,6 +170,7 @@ function TrainerProfile( { position } ) {
                             className="Team-BG"
                             whileHover={{ scale: 1.1 }}
                             whileTap= {{ scale: 0.9 }}
+                            onClick={e => handleMonClick(trainer, "4")}
                         >
 
                         </motion.div>
@@ -164,6 +184,7 @@ function TrainerProfile( { position } ) {
                             className="Team-BG"
                             whileHover={{ scale: 1.1 }}
                             whileTap= {{ scale: 0.9 }}
+                            onClick={e => handleMonClick(trainer, "5")}
                         >
 
                         </motion.div>
@@ -177,6 +198,7 @@ function TrainerProfile( { position } ) {
                             className="Team-BG"
                             whileHover={{ scale: 1.1 }}
                             whileTap= {{ scale: 0.9 }}
+                            onClick={e => handleMonClick(trainer, "6")}
                         >
 
                         </motion.div>
@@ -187,8 +209,8 @@ function TrainerProfile( { position } ) {
                     </div>
                 </div>
             </div>
-        </div>
-    );
+        </div>        
+    )};
 }
 
 export default TrainerProfile;
